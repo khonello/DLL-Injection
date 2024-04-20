@@ -1,0 +1,4 @@
+console/build
+console/dist
+*.spec
+*.txt
