@@ -19,12 +19,10 @@ for process in psutil.process_iter(["name", "pid"]):
         allocated_memory = win32process.VirtualAllocEx(target_process_handle, 0, dll_stat.st_size, win32con.MEM_RESERVE | win32con.MEM_COMMIT, win32con.PAGE_READWRITE)
 
         win32process.WriteProcessMemory(target_process_handle, allocated_memory, dll_path)
-
         thread_handle, thread_id = win32process.CreateRemoteThread(target_process_handle, None, 0, h_loadlib, allocated_memory, win32con.CREATE_SUSPENDED)
 
         win32process.ResumeThread(thread_handle)
         win32event.WaitForSingleObject(thread_handle, -1)
-
         win32process.VirtualFreeEx(target_process_handle, allocated_memory, 0, win32con.MEM_FREE)
 
         win32api.CloseHandle(thread_handle)
