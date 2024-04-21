@@ -6,7 +6,7 @@ import os
 import psutil
 
 
-dll_path = r"C:\Users\khonel\Desktop\programing\Dev\Python\Code Injection\deps\library.dll"
+dll_path = r"path\to\library.dll"
 dll_stat = os.stat(dll_path)
 
 h_kernel32 = win32api.GetModuleHandle("kernel32.dll")
