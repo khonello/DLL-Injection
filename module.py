@@ -25,6 +25,8 @@ for process in psutil.process_iter(["name", "pid"]):
         win32process.ResumeThread(thread_handle)
         win32event.WaitForSingleObject(thread_handle, -1)
 
+        win32process.VirtualFreeEx(target_process_handle, allocated_memory, 0, win32con.MEM_FREE)
+
         win32api.CloseHandle(thread_handle)
         win32api.CloseHandle(target_process_handle)
         break
